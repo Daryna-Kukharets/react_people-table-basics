@@ -4,6 +4,7 @@ import { PersonLink } from './PersonLink';
 import { Person } from '../types';
 import { getPeople } from '../api';
 import { useParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 export const PeopleTable = () => {
   const [people, setPeople] = useState<Person[]>([]);
@@ -75,11 +76,9 @@ export const PeopleTable = () => {
                   <tr
                     key={personSlug}
                     data-cy="person"
-                    className={
-                      personSlug === isSelected?.slug
-                        ? 'has-background-warning'
-                        : ''
-                    }
+                    className={classNames('', {
+                      'has-background-warning': personSlug === isSelected?.slug,
+                    })}
                   >
                     <td>
                       <PersonLink person={person} />
